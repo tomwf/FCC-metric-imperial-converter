@@ -33,19 +33,29 @@ app.route('/api/convert')
     const { input } = req.query
 
     const initNum = convertHandler.getNum(input)
+    console.log({initNum})
     const initUnit = convertHandler.getUnit(input)
-    const returnNum = convertHandler.convert(initNum, initUnit)
-    const returnUnit = convertHandler.getReturnUnit(initUnit)
-    const string = convertHandler.getString(initNum, initUnit, returnNum, returnUnit)
+    console.log({initUnit})
 
-    console.log(input)
-    res.json({
-      initNum,
-      initUnit,
-      returnNum,
-      returnUnit,
-      string
-    })
+    if (initNum === 'invalid number' && initUnit === 'invalid unit') {
+      res.send('invalid number AND unit')
+    } else if (initNum === 'invalid number') {
+      res.send('invalid number')
+    } else if (initUnit === 'invalid unit') {
+      res.send('invalid unit')
+    } else {
+      const returnNum = convertHandler.convert(initNum, initUnit)
+      const returnUnit = convertHandler.getReturnUnit(initUnit)
+      const string = convertHandler.getString(initNum, initUnit, returnNum, returnUnit)
+
+      res.json({
+        initNum,
+        initUnit,
+        returnNum,
+        returnUnit,
+        string
+      })
+    }
   })
 
 //For FCC testing purposes
@@ -53,7 +63,7 @@ fccTestingRoutes(app);
 
 //Routing for API 
 apiRoutes(app);  
-    
+
 //404 Not Found Middleware
 app.use(function(req, res, next) {
   res.status(404)
@@ -72,8 +82,8 @@ app.listen(port, function () {
       try {
         runner.run();
       } catch(e) {
-          console.log('Tests are not valid:');
-          console.error(e);
+        console.log('Tests are not valid:');
+        console.error(e);
       }
     }, 1500);
   }

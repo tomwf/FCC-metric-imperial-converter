@@ -1,26 +1,47 @@
 function ConvertHandler() {
   
   this.getNum = function(input) {
+    // Empty input returns 1
+    if (input.length === 0) return 1
+
     let result;
-    pattern = /^\d*\.?\d*/
-    result = input.match(pattern)[0]
+    pattern = /.*?(?=mi|km|lb|kg|gal|l)/i
+    numString = input.match(pattern)
+
+    // When no unit is specified
+    if (numString === null) return 'invalid number'
+
+    result = numString[0]
+    
+    // Handle fractional input
+    if (result.includes('/')) {
+      const [numerator, denominator, error] = result.split('/')
+      if (error) return 'invalid number'
+      result = (numerator / denominator).toFixed(5)
+    }
+
+    // Returns invalid number when result is not a number
+    if (isNaN(result)) return 'invalid number'
+
     return result;
   };
   
   this.getUnit = function(input) {
     let result;
-    if (input.endsWith('mi')) {
+    if (/mi/i.test(input)) {
       result = 'mi'
-    } else if (input.endsWith('km')) {
+    } else if (/km/i.test(input)) {
       result = 'km'
-    } else if (input.endsWith('lb')) {
+    } else if (/lb/i.test(input)) {
       result = 'lb'
-    } else if (input.endsWith('kg')) {
+    } else if (/kg/i.test(input)) {
       result = 'kg'
-    } else if (input.endsWith('gal')) {
+    } else if (/gal/i.test(input)) {
       result = 'gal'
-    } else if (input.endsWith('l')) {
+    } else if (/l/i.test(input)) {
       result = 'l'
+    } else {
+      result = 'invalid unit'
     }
     return result;
   };

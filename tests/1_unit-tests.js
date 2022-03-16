@@ -5,11 +5,16 @@ const ConvertHandler = require('../controllers/convertHandler.js');
 let convertHandler = new ConvertHandler();
 
 suite('Unit Tests', function(){
-  test('getNum returns a number', () => {
-    assert.equal(convertHandler.getNum('123'), '123', 'This is a number')
-    assert.equal(convertHandler.getNum('123.54mi'), '123.54', 'This is a number')
+  test('getNum() returns a number', () => {
+    assert.equal(convertHandler.getNum(''), '1', 'Empty input defaults to 1')
+    assert.equal(convertHandler.getNum('123gal'), '123', 'Whole number with unit returns a number')
+    assert.equal(convertHandler.getNum('123.54mi'), '123.54', 'Decimal number with unit returns a number')
+    assert.equal(convertHandler.getNum('2/3lb'), '0.66667', 'Fractional input with unit returns a number')
+    assert.equal(convertHandler.getNum('2/2/3km'), 'invalid number', 'Double fraction input returns "invalid number"')
+    assert.equal(convertHandler.getNum('badInput'), 'invalid number', 'Invalid input returns "invalid number"')
+    assert.equal(convertHandler.getNum('badInputkg'), 'invalid number', 'Invalid input with unit returns "invalid number"')
   })
-  test('getUnit returns a unit ("mi", "km", "lb", "kg", "gal" or "l")', () => {
+  test('getUnit() returns a unit ("mi", "km", "lb", "kg", "gal" or "l")', () => {
     assert.equal(convertHandler.getUnit('123mi'), 'mi', 'Unit is miles')
     assert.equal(convertHandler.getUnit('123km'), 'km', 'Unit is kilometers')
     assert.equal(convertHandler.getUnit('123lb'), 'lb', 'Unit is pounds')
@@ -17,7 +22,7 @@ suite('Unit Tests', function(){
     assert.equal(convertHandler.getUnit('123gal'), 'gal', 'Unit is gallons')
     assert.equal(convertHandler.getUnit('123l'), 'l', 'Unit is liters')
   })
-  test('getReturnUnit returns the converted unit ("mi" <=> "km", "lb" <=> "kg")', () => {
+  test('getReturnUnit() returns the converted unit ("mi" <=> "km", "lb" <=> "kg")', () => {
     assert.equal(convertHandler.getReturnUnit('mi'), 'km', 'Miles to kilometers')
     assert.equal(convertHandler.getReturnUnit('km'), 'mi', 'Kilometers to miles')
     assert.equal(convertHandler.getReturnUnit('lb'), 'kg', 'Pounds to kilograms')

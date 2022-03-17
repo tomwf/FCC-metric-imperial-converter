@@ -4,19 +4,17 @@ function ConvertHandler() {
     // Empty input returns 1
     if (input.length === 0) return 1
 
+    // Match for number pattern
     let result;
-    pattern = /.*?(?=mi|km|lbs|kg|gal|l)/i
-    numString = input.match(pattern)
+    const pattern = /^\d*[\.\/]?\d*/
+    result = input.match(pattern)[0]
 
-    // When no unit is specified
-    if (numString === null) return 'invalid number'
-
-    result = numString[0]
+    // Empty match for number pattern
+    if (!result || result === '0') return 'invalid number'
     
     // Handle fractional input
     if (result.includes('/')) {
-      const [numerator, denominator, error] = result.split('/')
-      if (error) return 'invalid number'
+      const [numerator, denominator] = result.split('/')
       result = numerator / denominator
     }
 

@@ -17,13 +17,13 @@ function ConvertHandler() {
     if (result.includes('/')) {
       const [numerator, denominator, error] = result.split('/')
       if (error) return 'invalid number'
-      result = (numerator / denominator).toFixed(5)
+      result = numerator / denominator
     }
 
     // Returns invalid number when result is not a number
     if (isNaN(result)) return 'invalid number'
 
-    return result;
+    return Math.round(result * 1000000) / 1000000;
   };
   
   this.getUnit = function(input) {
@@ -100,7 +100,7 @@ function ConvertHandler() {
     } else if (initUnit === 'L') {
       result = initNum / galToL
     }
-    return result.toFixed(5);
+    return Math.round(result * 1000000) / 1000000
   };
   
   this.getString = function(initNum, initUnit, returnNum, returnUnit) {

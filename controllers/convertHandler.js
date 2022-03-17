@@ -41,17 +41,17 @@ function ConvertHandler() {
 
   this.getUnit = function(input) {
     let result;
-    if (/^\d*[\.\/]?\d*mi$/i.test(input)) {
+    if (/^[\d\.\/]*mi$/i.test(input)) {
       result = 'mi'
-    } else if (/^\d*[\.\/]?\d*km$/i.test(input)) {
+    } else if (/^[\d\.\/]*km$/i.test(input)) {
       result = 'km'
-    } else if (/^\d*[\.\/]?\d*lbs$/i.test(input)) {
+    } else if (/^[\d\.\/]*lbs$/i.test(input)) {
       result = 'lbs'
-    } else if (/^\d*[\.\/]?\d*kg$/i.test(input)) {
+    } else if (/^[\d\.\/]*kg$/i.test(input)) {
       result = 'kg'
-    } else if (/^\d*[\.\/]?\d*gal$/i.test(input)) {
+    } else if (/^[\d\.\/]*gal$/i.test(input)) {
       result = 'gal'
-    } else if (/^\d*[\.\/]?\d*l$/i.test(input)) {
+    } else if (/^[\d\.\/]*l$/i.test(input)) {
       result = 'L'
     } else {
       result = 'invalid unit'

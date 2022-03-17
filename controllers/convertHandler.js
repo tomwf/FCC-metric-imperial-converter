@@ -1,17 +1,17 @@
 function ConvertHandler() {
-  
+
   this.getNum = function(input) {
     // Empty input returns 1
     if (input.length === 0) return 1
 
     // Match for number pattern
     let result;
-    const pattern = /^\d*[\.\/]?\d*/
+    const pattern = /.*?(?=mi|km|lbs|kg|gal|l)|.*/i
     result = input.match(pattern)[0]
 
     // Empty match for number pattern
     if (!result || result === '0') return 'invalid number'
-    
+
     // Handle fractional input
     if (result.includes('/')) {
       const [numerator, denominator] = result.split('/')
@@ -23,7 +23,7 @@ function ConvertHandler() {
 
     return result
   };
-  
+
   this.getUnit = function(input) {
     let result;
     if (/^\d*[\.\/]?\d*mi$/i.test(input)) {
@@ -43,7 +43,7 @@ function ConvertHandler() {
     }
     return result;
   };
-  
+
   this.getReturnUnit = function(initUnit) {
     let result;
     if (initUnit === 'mi') {
@@ -79,7 +79,7 @@ function ConvertHandler() {
     }
     return result;
   };
-  
+
   this.convert = function(initNum, initUnit) {
     const galToL = 3.78541;
     const lbsToKg = 0.453592;

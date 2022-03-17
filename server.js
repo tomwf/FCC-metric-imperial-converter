@@ -38,7 +38,7 @@ app.route('/api/convert')
     console.log({initUnit})
 
     if (initNum === 'invalid number' && initUnit === 'invalid unit') {
-      res.send('invalid number AND unit')
+      res.send('invalid number and unit')
     } else if (initNum === 'invalid number') {
       res.send('invalid number')
     } else if (initUnit === 'invalid unit') {
@@ -61,8 +61,8 @@ app.route('/api/convert')
 //For FCC testing purposes
 fccTestingRoutes(app);
 
-//Routing for API 
-apiRoutes(app);  
+//Routing for API
+apiRoutes(app);
 
 //404 Not Found Middleware
 app.use(function(req, res, next) {

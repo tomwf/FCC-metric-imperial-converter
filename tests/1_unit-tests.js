@@ -32,6 +32,7 @@ suite('Unit Tests', function(){
     assert.equal(convertHandler.getUnit('123bla'), 'invalid unit', 'Valid number but invalid unit')
     assert.equal(convertHandler.getUnit('123blami'), 'invalid unit', 'Valid number but invalid unit')
     assert.equal(convertHandler.getUnit('123blamibla'), 'invalid unit', 'Valid number but invalid unit')
+    assert.equal(convertHandler.getUnit('l'), 'L', 'l => L')
   })
   test('getReturnUnit() returns the converted unit ("mi" <=> "km", "lb" <=> "kg")', () => {
     assert.equal(convertHandler.getReturnUnit('mi'), 'km', 'Miles to kilometers')

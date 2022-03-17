@@ -19,6 +19,8 @@ suite('Unit Tests', function(){
     assert.equal(convertHandler.getNum('/82'), 'invalid number', '/82 => invalid number')
     assert.equal(convertHandler.getNum('/82gal'), 'invalid number', '/82gal => invalid number')
     assert.equal(convertHandler.getNum('1/2/3kg'), 'invalid number', '1/2/3kg => invalid number')
+    assert.equal(convertHandler.getNum('2.5/6km'), '0.4166666666666667', '2.5/6km => 0.4166666666666667')
+    assert.equal(convertHandler.getNum('km'), '1', 'km => 1')
   })
   test('getUnit() returns a unit ("mi", "km", "lb", "kg", "gal" or "l")', () => {
     assert.equal(convertHandler.getUnit('123mi'), 'mi', 'Unit is miles')

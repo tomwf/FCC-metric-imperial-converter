@@ -48,7 +48,7 @@ suite('Unit Tests', function(){
     assert.equal(convertHandler.convert('123', 'kg'), '271.16880', '123 kilograms => 271.16880 pounds')
     assert.equal(convertHandler.convert('123', 'gal'), '465.60543', '123 gallons => 465.60543 liters')
     assert.equal(convertHandler.convert('123', 'L'), '32.49318', '123 liters => 32.49318 gallons')
-    assert.equal(convertHandler.convert('1', 'lbs'), '0.453592', '1 pound => 0.453592 kilogram')
+    assert.equal(convertHandler.convert('1', 'lbs'), '0.45359', '1 pound => 0.45359 kilogram')
     assert.equal(convertHandler.convert('1', 'gal'), '3.78541', '1 gallons => 3.78541 liters')
   })
   test('getString() returns a json', () => {

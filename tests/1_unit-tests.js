@@ -10,9 +10,9 @@ suite('Unit Tests', function(){
     assert.equal(convertHandler.getNum('123gal'), '123', '123gal => 123')
     assert.equal(convertHandler.getNum('123.54mi'), '123.54', '123.54mi => 123.54')
     assert.equal(convertHandler.getNum('2/3lbs'), '0.6666666666666666', '2/3lbs => 0.6666666666666666')
-    assert.equal(convertHandler.getNum('2/2/3km'), 'invalid number', '2/2/3km => invalid number')
-    assert.equal(convertHandler.getNum('badInput'), 'invalid number', 'badInput => invalid number')
-    assert.equal(convertHandler.getNum('badInputkg'), 'invalid number', 'badInputkg => invalid number')
+    assert.equal(convertHandler.getNum('bla2/3lbs'), 'invalid number', 'bla2/3lbs => invalid number')
+    assert.equal(convertHandler.getNum('0'), 'invalid number', '0 => invalid number')
+    assert.equal(convertHandler.getNum('0gal'), 'invalid number', '0gal => invalid number')
   })
   test('getUnit() returns a unit ("mi", "km", "lb", "kg", "gal" or "l")', () => {
     assert.equal(convertHandler.getUnit('123mi'), 'mi', 'Unit is miles')

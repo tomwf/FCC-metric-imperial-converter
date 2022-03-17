@@ -21,6 +21,9 @@ suite('Unit Tests', function(){
     assert.equal(convertHandler.getUnit('123kg'), 'kg', 'Unit is kilograms')
     assert.equal(convertHandler.getUnit('123gal'), 'gal', 'Unit is gallons')
     assert.equal(convertHandler.getUnit('123l'), 'L', 'Unit is liters')
+    assert.equal(convertHandler.getUnit('123bla'), 'invalid unit', 'Valid number but invalid unit')
+    assert.equal(convertHandler.getUnit('123blami'), 'invalid unit', 'Valid number but invalid unit')
+    assert.equal(convertHandler.getUnit('123blamibla'), 'invalid unit', 'Valid number but invalid unit')
   })
   test('getReturnUnit() returns the converted unit ("mi" <=> "km", "lb" <=> "kg")', () => {
     assert.equal(convertHandler.getReturnUnit('mi'), 'km', 'Miles to kilometers')
@@ -46,6 +49,7 @@ suite('Unit Tests', function(){
     assert.equal(convertHandler.convert('123', 'gal'), '465.60543', '123 gallons => 465.60543 liters')
     assert.equal(convertHandler.convert('123', 'L'), '32.49318', '123 liters => 32.49318 gallons')
     assert.equal(convertHandler.convert('1', 'lbs'), '0.453592', '1 pound => 0.453592 kilogram')
+    assert.equal(convertHandler.convert('1', 'gal'), '3.78541', '1 gallons => 3.78541 liters')
   })
   test('getString() returns a json', () => {
     assert.equal(convertHandler.getString('3.1', 'mi', '4.98895', 'km'), '3.1 miles converts to 4.98895 kilometers', 'getString returns a string')

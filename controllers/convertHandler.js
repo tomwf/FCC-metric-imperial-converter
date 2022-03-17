@@ -23,7 +23,7 @@ function ConvertHandler() {
     // Returns invalid number when result is not a number
     if (isNaN(result)) return 'invalid number'
 
-    return Math.round(result * 1000000) / 1000000;
+    return result
   };
   
   this.getUnit = function(input) {
@@ -92,6 +92,9 @@ function ConvertHandler() {
     } else if (initUnit === 'km') {
       result = initNum / miToKm
     } else if (initUnit === 'lbs') {
+      if (initNum == 1) {
+        return lbsToKg
+      }
       result = initNum * lbsToKg
     } else if (initUnit === 'kg') {
       result = initNum / lbsToKg
@@ -100,9 +103,9 @@ function ConvertHandler() {
     } else if (initUnit === 'L') {
       result = initNum / galToL
     }
-    return Math.round(result * 1000000) / 1000000
+    return result.toFixed(5)
   };
-  
+
   this.getString = function(initNum, initUnit, returnNum, returnUnit) {
     let result;
     const fullInitUnit = this.spellOutUnit(initUnit)

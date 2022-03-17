@@ -1,15 +1,18 @@
 function ConvertHandler() {
 
   this.getNum = function(input) {
-    // Empty input returns 1
-    if (input.length === 0) return 1
+    // Empty input or unit only returns 1
+    if (
+      input.length === 0
+      || /^(mi|km|lbs|kg|gal|l)$/.test(input)
+    ) return 1
 
     // Match for number pattern
     let result;
-    // const pattern = /[\d\.\/]*(?=mi|km|lbs|kg|gal|l)|.*/i
-    const pattern = /[\d\.\/]*(?=mi|km|lbs|kg|gal|l)|[\d\.\/]*/i
-    result = input.match(pattern)[0]
-    console.log({input, result})
+    const pattern = /^[\d\.\/]*(?=mi|km|lbs|kg|gal|l)$|^[\d\.\/]*/i
+    const numString = input.match(pattern)
+    result = numString[0]
+    console.log({input, numString, result})
 
     // Handle fractional input
     if (result.includes('/')) {

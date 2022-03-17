@@ -90,9 +90,6 @@ function ConvertHandler() {
     } else if (initUnit === 'km') {
       result = initNum / miToKm
     } else if (initUnit === 'lbs') {
-      if (initNum == 1) {
-        return lbsToKg
-      }
       result = initNum * lbsToKg
     } else if (initUnit === 'kg') {
       result = initNum / lbsToKg

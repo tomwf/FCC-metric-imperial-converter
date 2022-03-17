@@ -5,7 +5,7 @@ function ConvertHandler() {
     if (input.length === 0) return 1
 
     let result;
-    pattern = /.*?(?=mi|km|lb|kg|gal|l)/i
+    pattern = /.*?(?=mi|km|lbs|kg|gal|l)/i
     numString = input.match(pattern)
 
     // When no unit is specified
@@ -32,14 +32,14 @@ function ConvertHandler() {
       result = 'mi'
     } else if (/km/i.test(input)) {
       result = 'km'
-    } else if (/lb/i.test(input)) {
-      result = 'lb'
+    } else if (/lbs/i.test(input)) {
+      result = 'lbs'
     } else if (/kg/i.test(input)) {
       result = 'kg'
     } else if (/gal/i.test(input)) {
       result = 'gal'
     } else if (/l/i.test(input)) {
-      result = 'l'
+      result = 'L'
     } else {
       result = 'invalid unit'
     }
@@ -52,13 +52,13 @@ function ConvertHandler() {
       result = 'km'
     } else if (initUnit === 'km') {
       result = 'mi'
-    } else if (initUnit === 'lb') {
+    } else if (initUnit === 'lbs') {
       result = 'kg'
     } else if (initUnit === 'kg') {
-      result = 'lb'
+      result = 'lbs'
     } else if (initUnit === 'gal') {
-      result = 'l'
-    } else if (initUnit === 'l') {
+      result = 'L'
+    } else if (initUnit === 'L') {
       result = 'gal'
     }
     return result;
@@ -70,13 +70,13 @@ function ConvertHandler() {
       result = 'miles'
     } else if (unit === 'km') {
       result = 'kilometers'
-    } else if (unit === 'lb') {
+    } else if (unit === 'lbs') {
       result = 'pounds'
     } else if (unit === 'kg') {
       result = 'kilograms'
     } else if (unit === 'gal') {
       result = 'gallons'
-    } else if (unit === 'l') {
+    } else if (unit === 'L') {
       result = 'liters'
     }
     return result;
@@ -91,13 +91,13 @@ function ConvertHandler() {
       result = initNum * miToKm
     } else if (initUnit === 'km') {
       result = initNum / miToKm
-    } else if (initUnit === 'lb') {
+    } else if (initUnit === 'lbs') {
       result = initNum * lbsToKg
     } else if (initUnit === 'kg') {
       result = initNum / lbsToKg
     } else if (initUnit === 'gal') {
       result = initNum * galToL
-    } else if (initUnit === 'l') {
+    } else if (initUnit === 'L') {
       result = initNum / galToL
     }
     return result.toFixed(5);

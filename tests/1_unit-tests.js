@@ -13,6 +13,12 @@ suite('Unit Tests', function(){
     assert.equal(convertHandler.getNum('bla2/3lbs'), 'invalid number', 'bla2/3lbs => invalid number')
     assert.equal(convertHandler.getNum('0'), 'invalid number', '0 => invalid number')
     assert.equal(convertHandler.getNum('0gal'), 'invalid number', '0gal => invalid number')
+    assert.equal(convertHandler.getNum('.76'), '.76', '.76 => .76')
+    assert.equal(convertHandler.getNum('.76l'), '.76', '.76l => .76')
+    assert.equal(convertHandler.getNum('..76l'), 'invalid number', '..76l => invalid number')
+    assert.equal(convertHandler.getNum('/82'), 'invalid number', '/82 => invalid number')
+    assert.equal(convertHandler.getNum('/82gal'), 'invalid number', '/82gal => invalid number')
+    assert.equal(convertHandler.getNum('1/2/3kg'), 'invalid number', '1/2/3kg => invalid number')
   })
   test('getUnit() returns a unit ("mi", "km", "lb", "kg", "gal" or "l")', () => {
     assert.equal(convertHandler.getUnit('123mi'), 'mi', 'Unit is miles')

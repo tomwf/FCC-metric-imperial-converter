@@ -6,20 +6,32 @@ function ConvertHandler() {
 
     // Match for number pattern
     let result;
-    const pattern = /.*?(?=mi|km|lbs|kg|gal|l)|.*/i
+    // const pattern = /[\d\.\/]*(?=mi|km|lbs|kg|gal|l)|.*/i
+    const pattern = /[\d\.\/]*(?=mi|km|lbs|kg|gal|l)|[\d\.\/]*/i
     result = input.match(pattern)[0]
-
-    // Empty match for number pattern
-    if (!result || result === '0') return 'invalid number'
+    console.log({input, result})
 
     // Handle fractional input
     if (result.includes('/')) {
-      const [numerator, denominator] = result.split('/')
+      const [numerator, denominator, error] = result.split('/')
+      console.log({numerator, denominator})
+
+      if (
+        error
+        || !numerator
+        || !denominator
+      ) return 'invalid number'
+
       result = numerator / denominator
+      console.log({result})
     }
 
     // Returns invalid number when result is not a number
-    if (isNaN(result)) return 'invalid number'
+    if (
+      !result
+      || result === '0'
+      || isNaN(result)
+    ) return 'invalid number'
 
     return result
   };

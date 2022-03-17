@@ -7,12 +7,12 @@ let convertHandler = new ConvertHandler();
 suite('Unit Tests', function(){
   test('getNum() returns a number', () => {
     assert.equal(convertHandler.getNum(''), '1', 'Empty input defaults to 1')
-    assert.equal(convertHandler.getNum('123gal'), '123', 'Whole number with unit returns a number')
-    assert.equal(convertHandler.getNum('123.54mi'), '123.54', 'Decimal number with unit returns a number')
-    assert.equal(convertHandler.getNum('2/3lbs'), '0.66667', 'Fractional input with unit returns a number')
-    assert.equal(convertHandler.getNum('2/2/3km'), 'invalid number', 'Double fraction input returns "invalid number"')
-    assert.equal(convertHandler.getNum('badInput'), 'invalid number', 'Invalid input returns "invalid number"')
-    assert.equal(convertHandler.getNum('badInputkg'), 'invalid number', 'Invalid input with unit returns "invalid number"')
+    assert.equal(convertHandler.getNum('123gal'), '123', '123gal => 123')
+    assert.equal(convertHandler.getNum('123.54mi'), '123.54', '123.54mi => 123.54')
+    assert.equal(convertHandler.getNum('2/3lbs'), '0.6666666666666666', '2/3lbs => 0.6666666666666666')
+    assert.equal(convertHandler.getNum('2/2/3km'), 'invalid number', '2/2/3km => invalid number')
+    assert.equal(convertHandler.getNum('badInput'), 'invalid number', 'badInput => invalid number')
+    assert.equal(convertHandler.getNum('badInputkg'), 'invalid number', 'badInputkg => invalid number')
   })
   test('getUnit() returns a unit ("mi", "km", "lb", "kg", "gal" or "l")', () => {
     assert.equal(convertHandler.getUnit('123mi'), 'mi', 'Unit is miles')
@@ -30,7 +30,7 @@ suite('Unit Tests', function(){
     assert.equal(convertHandler.getReturnUnit('gal'), 'L', 'Gallons to liters')
     assert.equal(convertHandler.getReturnUnit('L'), 'gal', 'Liters to gallons')
   })
-  test('spellOutUnit spells out unit', () => {
+  test('spellOutUnit() spells out unit', () => {
     assert.equal(convertHandler.spellOutUnit('mi'), 'miles', '"mi" is miles')
     assert.equal(convertHandler.spellOutUnit('km'), 'kilometers', '"km" is kilometers')
     assert.equal(convertHandler.spellOutUnit('lbs'), 'pounds', '"lbs" is pounds')
@@ -38,15 +38,16 @@ suite('Unit Tests', function(){
     assert.equal(convertHandler.spellOutUnit('gal'), 'gallons', '"gal" is gallons')
     assert.equal(convertHandler.spellOutUnit('L'), 'liters', '"L" is liters')
   })
-  test('convert returns converted unit', () => {
+  test('convert() returns converted unit', () => {
     assert.equal(convertHandler.convert('123', 'mi'), '197.94882', '123 miles => 197.94882 kilometers')
     assert.equal(convertHandler.convert('123', 'km'), '76.42885', '123 kilometers => 76.42885 miles')
     assert.equal(convertHandler.convert('123', 'lbs'), '55.79182', '123 pounds => 55.79182 kilograms')
     assert.equal(convertHandler.convert('123', 'kg'), '271.16880', '123 kilograms => 271.16880 pounds')
     assert.equal(convertHandler.convert('123', 'gal'), '465.60543', '123 gallons => 465.60543 liters')
     assert.equal(convertHandler.convert('123', 'L'), '32.49318', '123 liters => 32.49318 gallons')
+    assert.equal(convertHandler.convert('1', 'lbs'), '0.453592', '1 pound => 0.453592 kilogram')
   })
-  test('getString returns a json', () => {
+  test('getString() returns a json', () => {
     assert.equal(convertHandler.getString('3.1', 'mi', '4.98895', 'km'), '3.1 miles converts to 4.98895 kilometers', 'getString returns a string')
   })
 });

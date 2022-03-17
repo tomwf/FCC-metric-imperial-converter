@@ -113,7 +113,7 @@ function ConvertHandler() {
     } else if (initUnit === 'L') {
       result = initNum / galToL
     }
-    return result.toFixed(5)
+    return Math.round(result * 100000) / 100000
   };
 
   this.getString = function(initNum, initUnit, returnNum, returnUnit) {

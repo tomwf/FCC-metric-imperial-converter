@@ -12,13 +12,13 @@ suite('Functional Tests', function() {
       .get('/api/convert?input=10L')
       .end((err, res) => {
         if (err) console.error(err)
-
-        const body = res.body
-        assert.equal(body.initNum, '10') 
-        assert.equal(body.initUnit, 'L') 
-        assert.equal(body.returnNum, 2.64172) 
-        assert.equal(body.returnUnit, 'gal') 
-        assert.equal(body.string, '10 liters converts to 2.64172 gallons') 
+        assert.deepEqual(res.body, {
+          initNum: '10',
+          initUnit: 'L',
+          returnNum: 2.64172,
+          returnUnit: 'gal',
+          string: '10 liters converts to 2.64172 gallons'
+        })
         done()
       })
   })
@@ -62,13 +62,13 @@ suite('Functional Tests', function() {
       .end((err, res) => {
         if (err) console.error(err)
 
-        const body = res.body
-        console.log(body)
-        assert.equal(body.initNum, 1)
-        assert.equal(body.initUnit, 'kg')
-        assert.equal(body.returnNum, 2.20462)
-        assert.equal(body.returnUnit, 'lbs')
-        assert.equal(body.string, '1 kilograms converts to 2.20462 pounds')
+        assert.deepEqual(res.body, {
+          initNum: 1,
+          initUnit: 'kg',
+          returnNum: 2.20462,
+          returnUnit: 'lbs',
+          string: '1 kilograms converts to 2.20462 pounds'
+        })
         done()
       })
   })

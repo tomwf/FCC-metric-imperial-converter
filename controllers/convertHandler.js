@@ -19,22 +19,14 @@ function ConvertHandler() {
       const [numerator, denominator, error] = result.split('/')
       console.log({numerator, denominator})
 
-      if (
-        error
-        || !numerator
-        || !denominator
-      ) return 'invalid number'
+      if (error || !numerator || !denominator) return 'invalid number'
 
       result = numerator / denominator
       console.log({result})
     }
 
     // Returns invalid number when result is not a number
-    if (
-      !result
-      || result === '0'
-      || isNaN(result)
-    ) return 'invalid number'
+    if (!result || result === '0' || isNaN(result)) return 'invalid number'
 
     return result
   };

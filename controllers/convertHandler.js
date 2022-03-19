@@ -2,10 +2,7 @@ function ConvertHandler() {
 
   this.getNum = function(input) {
     // Empty input or unit only returns 1
-    if (
-      input.length === 0
-      || /^(mi|km|lbs|kg|gal|l)$/.test(input)
-    ) return 1
+    if (/^[^\d]*$/.test(input)) return 1
 
     // Match for number pattern
     let result;

@@ -29,9 +29,7 @@ suite('Functional Tests', function() {
       .end((err, res) => {
         if (err) console.error(err)
 
-        const text = res.text
-        console.log({text})
-        assert.equal(text, 'invalid unit')
+        assert.equal(res.text, 'invalid unit')
         done()
       })
   })
@@ -42,9 +40,7 @@ suite('Functional Tests', function() {
       .end((err, res) => {
         if (err) console.error(err)
 
-        const text = res.text
-        console.log({text})
-        assert.equal(text, 'invalid number')
+        assert.equal(res.text, 'invalid number')
         done()
       })
   })
@@ -55,9 +51,7 @@ suite('Functional Tests', function() {
       .end((err, res) => {
         if (err) console.error(err)
 
-        const text = res.text
-        console.log({text})
-        assert.equal(text, 'invalid number and unit')
+        assert.equal(res.text, 'invalid number and unit')
         done()
       })
   })

@@ -9,17 +9,14 @@ function ConvertHandler() {
     const pattern = /^[\d\.\/]*(?=mi|km|lbs|kg|gal|l)$|^[\d\.\/]*/i
     const numString = input.match(pattern)
     result = numString[0]
-    console.log({input, numString, result})
 
     // Handle fractional input
     if (result.includes('/')) {
       const [numerator, denominator, error] = result.split('/')
-      console.log({numerator, denominator})
 
       if (error || !numerator || !denominator) return 'invalid number'
 
       result = numerator / denominator
-      console.log({result})
     }
 
     // Returns invalid number when result is not a number

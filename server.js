@@ -33,9 +33,7 @@ app.route('/api/convert')
     const { input } = req.query
 
     const initNum = convertHandler.getNum(input)
-    console.log({initNum})
     const initUnit = convertHandler.getUnit(input)
-    console.log({initUnit})
 
     if (initNum === 'invalid number' && initUnit === 'invalid unit') {
       res.send('invalid number and unit')
